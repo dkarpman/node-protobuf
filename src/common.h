@@ -16,6 +16,6 @@ using namespace v8;
 using namespace node;
 
 // disable for now
-static bool preserve_int64 = false;
+static bool preserve_int64 = true;
 
 #endif
