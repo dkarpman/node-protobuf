@@ -58,9 +58,13 @@ Handle<Value> ParseField(const google::protobuf::Message &message, const Reflect
         uint32 hi, lo;
         hi = (uint32) (value >> 32);
         lo = (uint32) (value);
-        Local<Array> t = NanNew<Array>(2);
-        t->Set(0, NanNew<Number>(hi));
-        t->Set(1, NanNew<Number>(lo));
+        // Return an object with high / low
+        Local<Object> t = NanNew<Object>();
+        t->Set(NanNew("high"), NanNew<Number>(hi));
+        t->Set(NanNew("low") , NanNew<Number>(lo));
+        // Local<Array> t = NanNew<Array>(2);
+        // t->Set(0, NanNew<Number>(hi));
+        // t->Set(1, NanNew<Number>(lo));
         v = t;
       } else
         v = NanNew<Number>(value);
