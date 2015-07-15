@@ -35,8 +35,9 @@ Handle<Value> ParseField(const google::protobuf::Message &message, const Reflect
         // t->Set(0, NanNew<Number>(hi));
         // t->Set(1, NanNew<Number>(lo));
         v = t;
-      } else
+      } else {
         v = NanNew<Number>(value);
+      }
       break;
     }
     case FieldDescriptor::CPPTYPE_UINT32: {
@@ -66,8 +67,9 @@ Handle<Value> ParseField(const google::protobuf::Message &message, const Reflect
         // t->Set(0, NanNew<Number>(hi));
         // t->Set(1, NanNew<Number>(lo));
         v = t;
-      } else
+      } else {
         v = NanNew<Number>(value);
+      }
       break;
     }
     case FieldDescriptor::CPPTYPE_DOUBLE: {
