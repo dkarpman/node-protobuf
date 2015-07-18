@@ -71,9 +71,27 @@ pb_wrapper.prototype.parse = function() {
   } ) ;
 } ;
 
+var serialize_helper = function(obj) {
+  if(!obj) {
+    return obj;
+  }
+  for(var property in obj) {
+    if(obj.hasOwnProperty(property)) {
+      if(typeof obj[property] === 'object') {
+        if(Long.isLong( obj[property] ) ) {
+          obj[property] = [ obj[property].getHighBitsUnsigned()
+                          , obj[property].getLowBitsUnsigned() ] ;
+        } else {
+          return serialize_helper(obj[property]);
+        }
+      }
+    }
+  }
+} ;
+
 pb_wrapper.prototype.serialize = function() {
   if (arguments.length < 2) {
-    throw new Error("Invalid arguments")
+    throw new Error("Invalid arguments") ;
   }
 
   var object   = arguments[0] ;
@@ -82,21 +100,21 @@ pb_wrapper.prototype.serialize = function() {
   var native   = this.native ;
 
   if (callback === null) {
+    serialize_helper(object);
     var result = native.serialize(object, schema) ;
     if (result === null) {
       throw new Error("Missing required fields while serializing " + schema) ;
     } else {
-      parse_helper(result);
       return result ;
     }
   }
   return process.nextTick(function() {
     try {
+      serialize_helper(object);
       var result = native.serialize(object, schema) ;
       if (result === null) {
         return callback(Error("Missing required fields during serializing " + schema), null) ;
       } else {
-        parse_helper(result);
         return callback(null, result) ;
       }
     } catch (e) {
