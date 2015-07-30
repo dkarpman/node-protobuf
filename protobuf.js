@@ -30,7 +30,7 @@ var parse_helper = function(obj) {
            obj[property].hasOwnProperty('low') ) {
           obj[property] = new Long(obj[property].low, obj[property].high);
         } else {
-          return parse_helper(obj[property]);
+          parse_helper(obj[property]);
         }
       }
     }
