@@ -37,7 +37,7 @@ void SerializeField(google::protobuf::Message *message, const Reflection *r, con
             Local<Object> n64_array = val->ToObject();
             uint64 n64;
             uint32 hi = n64_array->Get(0)->Uint32Value() ,
-                   lo = n64_array->Get(1)->Uint32Value();
+                   lo = n64_array->Get(1)->Uint32Value() ;
             n64 = ((uint64)hi << 32) + (uint64)lo;
             r->SetInt64(message, field, n64);
           } else {

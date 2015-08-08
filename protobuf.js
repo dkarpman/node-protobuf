@@ -82,7 +82,7 @@ var serialize_helper = function(obj) {
           obj[property] = [ obj[property].getHighBitsUnsigned()
                           , obj[property].getLowBitsUnsigned() ] ;
         } else {
-          return serialize_helper(obj[property]);
+          serialize_helper(obj[property]);
         }
       }
     }
