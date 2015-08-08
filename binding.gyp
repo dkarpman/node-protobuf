@@ -33,12 +33,13 @@
           "OTHER_CPLUSPLUSFLAGS": [
             "-stdlib=libc++",
             "-I/usr/local/include"
-          ]
+          ],
+          "GCC_ENABLE_CPP_RTTI": "YES"
         }
       }],
       ["OS == 'linux'", {
         "libraries": [
-          "-L/usr/local/libz", 
+          "-L/usr/local/libz",
           "-lprotobuf"
         ],
         "include_dirs": [
