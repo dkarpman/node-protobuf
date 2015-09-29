@@ -7,8 +7,8 @@
   "repository": "https://github.com/dkarpman/node-protobuf",
   "dependencies": {
     "bindings": ">=1.2.1",
-    "nan": "~1.9.0",
-    "long" : ">=2.2.5"
+    "long" : ">=2.2.5",
+    "nan": "^2.0.9"
   },
   "engines": [
     "node >= 0.10.0",
