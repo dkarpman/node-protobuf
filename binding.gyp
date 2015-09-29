@@ -1,11 +1,11 @@
 {
-  "targets": [ {
+  "targets": [{
     "target_name": "protobuf",
-    "sources"    : [ "./src/init.cpp", "./src/native.cpp", "./src/parse.cpp", "./src/serialize.cpp" ],
-    "cflags"     : [ "-Ofast", "-mtune=native", "-ffast-math", "-funroll-loops", "-fomit-frame-pointer", "-std=c++11", "-pthread", "-static", "-I../../" ],
-    "cflags_cc"  : [ "-Ofast", "-mtune=native", "-ffast-math", "-funroll-loops", "-fomit-frame-pointer", "-std=c++11", "-pthread", "-static", "-I../../" ],
-    "cflags_cc!" : [ "-fno-rtti" ] ,
-    "conditions" : [
+    "sources": [ "./src/init.cpp", "./src/native.cpp", "./src/parse.cpp", "./src/serialize.cpp" ],
+    "cflags" : [ "-Ofast", "-mtune=native", "-ffast-math", "-funroll-loops", "-fomit-frame-pointer", "-std=c++11", "-pthread", "-static", "-I../../" ],
+    "cflags_cc" : [ "-Ofast", "-mtune=native", "-ffast-math", "-funroll-loops", "-fomit-frame-pointer", "-std=c++11", "-pthread", "-static", "-I../../" ],
+    "cflags_cc!": [ "-fno-rtti" ],
+        "conditions": [
       ["OS == 'win'", {
         "libraries": [
           "-llibprotobuf.lib"
@@ -39,7 +39,7 @@
       }],
       ["OS == 'linux'", {
         "libraries": [
-          "-L/usr/local/libz",
+          "-L/usr/local/libz", 
           "-lprotobuf"
         ],
         "include_dirs": [
