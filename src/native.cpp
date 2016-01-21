@@ -73,6 +73,7 @@ NAN_METHOD(NativeProtobuf::Serialize) {
   if (SerializePart(message, subj) < 0) {
     // required field not present!
     info.GetReturnValue().Set(Nan::Null());
+    delete message;
     return;
   }
 
@@ -85,6 +86,7 @@ NAN_METHOD(NativeProtobuf::Serialize) {
   if (!result) {
     Nan::ThrowError("Can't serialize");
     info.GetReturnValue().Set(Nan::Undefined());
+    delete message;
     return;
   }
 
