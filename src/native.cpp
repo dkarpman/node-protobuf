@@ -118,12 +118,13 @@ NAN_METHOD(NativeProtobuf::Parse) {
 
   if (parseResult) {
     Local<Object> ret = ParsePart(*message);
-    delete message;
     info.GetReturnValue().Set(ret);
   } else {
     Nan::ThrowError("Malformed protocol buffer");
     info.GetReturnValue().Set(Nan::Null());
   }
+  
+  delete message;
 }
 
 NAN_METHOD(NativeProtobuf::Info) {
