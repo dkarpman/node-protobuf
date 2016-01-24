@@ -3,6 +3,7 @@
 #include "serialize.h"
 
 void SerializeField(google::protobuf::Message *message, const Reflection *r, const FieldDescriptor *field, Handle<Value> val) {
+  Nan::HandleScope scope;
   const EnumValueDescriptor *enumValue = NULL;
   bool repeated = field->is_repeated();
 
@@ -160,6 +161,7 @@ void SerializeField(google::protobuf::Message *message, const Reflection *r, con
 }
 
 int SerializePart(google::protobuf::Message *message, Handle<Object> subj) {
+  Nan::HandleScope scope;
   // get a reflection
   const Reflection *r = message->GetReflection();
   const Descriptor *d = message->GetDescriptor();

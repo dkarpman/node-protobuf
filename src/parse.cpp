@@ -2,6 +2,7 @@
 #include "parse.h"
 
 Handle<Value> ParseField(const google::protobuf::Message &message, const Reflection *r, const FieldDescriptor *field, int index) {
+  Nan::EscapableHandleScope scope;
   Handle<Value> v;
 
   switch (field->cpp_type()) {
@@ -127,10 +128,11 @@ Handle<Value> ParseField(const google::protobuf::Message &message, const Reflect
     }
   }
 
-  return v;
+  return scope.Escape(v);
 }
 
 Handle<Object> ParsePart(const google::protobuf::Message &message) {
+  Nan::EscapableHandleScope scope;
   Handle<Object> ret = Nan::New<Object>();
   // get a reflection
   const Reflection *r = message.GetReflection();
@@ -162,5 +164,5 @@ Handle<Object> ParsePart(const google::protobuf::Message &message) {
     }
   }
 
-  return ret;
+  return scope.Escape(ret);
 }
